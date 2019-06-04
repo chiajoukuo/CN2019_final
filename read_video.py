@@ -36,7 +36,7 @@ if __name__ == '__main__' :
  
         # Display result
         cv2.imshow("Tracking", frame)
-        print(frame)
+        # print(frame)
         # cv2.imwrite("./MU_1/"+nname+".jpg", frame)
  
         # Exit if ESC pressed
