@@ -36,7 +36,7 @@ while True:
     conn.send( stringData )
 
     # Display result
-    cv2.imshow("Video Streaming", frame)
+    # cv2.imshow("Video Streaming", frame)
     # cv2.imwrite("./MU_1/"+nname+".jpg", frame)
 
     # Exit if ESC pressed
