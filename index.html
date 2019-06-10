@@ -11,12 +11,31 @@
 <body>
     <h1>Hello</h1>
 
+    <h3>Click the video name you want to watch...</h3>
+
+    <button onclick="switchVideo('video')">Avengers 4 Trailer</button>
+    <button onclick="switchVideo('MU_1')">Michael Wazowski</button>
+
     <video id="videoPlayer" controls width="600"></video>
+    <button onclick="switchSpeed(0.5)">0.5x</button>
+    <button onclick="switchSpeed(1)">1x</button>
+    <button onclick="switchSpeed(2)">2x</button>
+
 
     <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
     <script>
+        var url = "/video/video/video.mpd";
+        var switchSpeed = (i) => {
+            document.querySelector('video').playbackRate = i
+        }
+        var switchVideo = (name) => {
+            console.log(name)
+            url = "/video/video/"+name+".mpd";
+            console.log(url)
+            var player = dashjs.MediaPlayer().create();
+            player.initialize(document.querySelector("#videoPlayer"), url, true);
+        }
         (function () {
-            var url = "/video/video/video.mpd";
             var player = dashjs.MediaPlayer().create();
             player.initialize(document.querySelector("#videoPlayer"), url, true);
         })();
