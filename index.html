@@ -13,8 +13,13 @@
 
     <h3>Click the video name you want to watch...</h3>
 
-    <button onclick="switchVideo('video')">Avengers 4 Trailer</button>
-    <button onclick="switchVideo('MU_1')">Michael Wazowski</button>
+
+    <form method="POST" enctype="multipart/form-data" action="upload.php">
+        <input type="file" name="my_file">
+        <input type="submit" value="Upload">
+    </form>
+
+    <br>
 
     <video id="videoPlayer" controls width="600"></video>
     <button onclick="switchSpeed(0.5)">0.5x</button>
@@ -30,7 +35,7 @@
         }
         var switchVideo = (name) => {
             console.log(name)
-            url = "/video/video/"+name+".mpd";
+            url = "/video/video/" + name + ".mpd";
             console.log(url)
             var player = dashjs.MediaPlayer().create();
             player.initialize(document.querySelector("#videoPlayer"), url, true);
