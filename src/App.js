@@ -1,35 +1,48 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { MediaPlayer } from 'dashjs';
+import test_url from './video/MU_1/MU_1.mpd'
 
+const player = MediaPlayer().create();
+//player.initialize(document.querySelector("#videoPlayer"), "https://d206c4y6cx10lo.cloudfront.net/bk_peng_000340_22_32_10sec_spliced.mpd", true);
 
 class App extends Component {
     state = {
-        url:'video',
+        url:'/video/video/video.mpd',
         test:':)',
         videolist:['video', 'MU_1'],
         tmp:''
     }
+    
     switchVideo (i) {
+        player.reset();
         this.setState({
-            url: i
+            url: '/video/'+i+'/'+i+'.mpd'
         })
+        this.loadVideo('/video/'+i+'/'+i+'.mpd');
+    }
+    loadVideo = () => {
+        player.attachView(this.video);
+        player.attachSource(test_url);
     }
     switchSpeed (i) {
         document.querySelector('video').playbackRate = i        
     }
     componentDidMount() {
         console.log(this.state.test)
-        var player = MediaPlayer().create();
-        player.initialize(document.querySelector("#videoPlayer"), this.state.url, true);
+        // var player = MediaPlayer().create();
+        //https://dash.akamaized.net/envivio/EnvivioDash3/manifest.mpd
+        // player.initialize(document.querySelector("#videoPlayer"), test_url, true);
+        player.initialize();
+        this.loadVideo();
+        // this.player.preload();
     }
     componentDidUpdate() {
         console.log(this.state.test)
 
         // if update is url, then create new player
-        var player = MediaPlayer().create();
-        player.initialize(document.querySelector("#videoPlayer"), this.state.url, true);
+        
+        //player.initialize(document.querySelector("#videoPlayer"), this.state.url, true);
     }
     test () {
         this.setState({
@@ -72,7 +85,7 @@ class App extends Component {
                 <button onClick={()=>this.switchVideo('video')}>Avengers 4 Trailer</button>
                 <button onClick={()=>this.switchVideo('MU_1')}>Michael Wazowski</button>
             </div>
-            <video id="videoPlayer" controls width="600"></video>
+            <video id="videoPlayer" controls width="600" ref={video => this.video=video} ></video>
             <div>
                 <button onClick={()=>this.switchSpeed(0.5)}>0.5x</button>
                 <button onClick={()=>this.switchSpeed(1)}>1x</button>
