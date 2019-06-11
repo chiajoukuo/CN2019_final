@@ -2,10 +2,11 @@
   <head>
     <title>Video Streaming Demonstration</title>
     <link rel="stylesheet" href='../static/style.css'/>
-    <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">  </head>
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">  
+  </head>
   <body>
     <h1>Video Streaming</h1>
-    <p>Click on the button below to change icon.</p>
+    
     <div>
       <input type="image" src="../static/icon/non.png" alt="send" name="Test" id="ebi"
         onclick="video();" class="icon"/>
@@ -15,6 +16,8 @@ onclick="ebi_video();" class="icon"/>
 onclick="pack_video();" class="icon"/>
       <input type="image" src="../static/icon/shiba.png"  alt="send" name="Test" id="pack"
 onclick="shiba_video();" class="icon"/>
+      <a href="http://192.168.43.220:8080"><img src ="https://cdn4.iconfinder.com/data/icons/movies-2-solid/60/067_-_Ironman-512.png" class ="icon"/></a>
+    <p>Click on the button below to change icon.</p>
     </div>
     <script>
       video = () => {
