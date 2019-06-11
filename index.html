@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Hello</h1>
+
+    <h3>Click the video name you want to watch...</h3>
+
+
+    <form method="POST" enctype="multipart/form-data" action="upload.php">
+        <input type="file" name="my_file" accept="video/*" onchange="getFileName(this)">
+        <input type="submit" value="Upload" id="submit">
+    </form>
+    <form>
+        <select name="ChooseVideo">
+        　<option value="video" onclick="switchVideo('video')">Avengers 4 Trailer</option>
+        　<option value="MU_1" onclick="switchVideo('MU_1')">Michael Wazowski</option>
+        </select>
+    </form>
+    <br>
+    <button onclick="switchVideo('video')">Avengers 4 Trailer</button>
+    <button onclick="switchVideo('MU_1')">Michael Wazowski</button>
+
+
+    <video id="videoPlayer" controls width="600" ref=></video>
+    <button onclick="switchSpeed(0.5)">0.5x</button>
+    <button onclick="switchSpeed(1)">1x</button>
+    <button onclick="switchSpeed(2)">2x</button>
+
+
+    <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+    <script>
+        OptionList = [];
+        tmp = '';
+        function getFileName(input){
+            url = input.value;
+            console.log(url)
+            var ext = url.substring(url.lastIndexOf('.')+1).toLowerCase();
+            if (input.files && (ext == "mp4" || ext == "" || ext == "")){
+                tmp = url;
+            }
+            else {
+                tmp = '';
+            }
+        }
+        const submit = document.getElementById("submit");
+        submit.addEventListener('click', event=>{
+            if (tmp !== '') {
+                OptionList.push(tmp);
+                videoNode = CreateItem(tmp.substring(url.lastIndexOf('/'),url.lastIndexOf('.')), OptionList.length);
+                var select = document.getElementsByName("ChooseVideo")[0]
+                select.appendChild(videoNode);
+                tmp = '';
+            }
+
+        })
+        var url = "/video/video/video.mpd";
+        var player = dashjs.MediaPlayer().create();
+
+        var switchSpeed = (i) => {
+            document.querySelector('video').playbackRate = i
+        }
+        var switchVideo = (name) => {
+            console.log(name)
+            url = "/video/"+name+"/" + name + ".mpd";
+            console.log(url)
+            // var player = dashjs.MediaPlayer().create();
+            player.reset();
+            player.attachView(document.querySelector('video'));
+            player.attachSource(url);
+            // player.initialize(document.querySelector("#videoPlayer"), url, true);
+        }
+        (function () {
+            player.initialize(document.querySelector("#videoPlayer"), url, true);
+        })();
+
+        function CreateItem(innertext, num) {
+            const Option = document.createElement("option");
+            Option.setAttribute("value", innertext+num);
+            Option.innerHTML = innertext;
+            Option.setAttribute("onclick", "switchVideo("+innertext+")")
+        }
+    </script>
+
+</body>
+
+</html>
