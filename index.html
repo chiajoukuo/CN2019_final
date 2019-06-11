@@ -19,7 +19,7 @@
         <input type="submit" value="Upload" id="submit">
     </form>
     <form>
-        <select name="ChooseVideo">
+        <select name="ChooseVideo" onchange="switchVideo(this.options[this.options.selectedIndex].value)">
         　<option value="video" onclick="switchVideo('video')">Avengers 4 Trailer</option>
         　<option value="MU_1" onclick="switchVideo('MU_1')">Michael Wazowski</option>
         </select>
@@ -83,7 +83,7 @@
 
         function CreateItem(innertext, num) {
             const Option = document.createElement("option");
-            Option.setAttribute("value", innertext+num);
+            Option.setAttribute("value", innertext);
             Option.innerHTML = innertext;
             Option.setAttribute("onclick", "switchVideo("+innertext+")")
         }
