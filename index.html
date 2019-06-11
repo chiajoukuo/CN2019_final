@@ -20,10 +20,11 @@
     </form>
     <form>
         <select name="ChooseVideo" onchange="switchVideo(this.options[this.options.selectedIndex].value)">
-        　<option value="video" onclick="switchVideo('video')">Avengers 4 Trailer</option>
-        　<option value="MU_1" onclick="switchVideo('MU_1')">Michael Wazowski</option>
+        　<option value="video">Avengers 4 Trailer</option>
+        　<option value="MU_1">Michael Wazowski</option>
         </select>
     </form>
+    <input id="inputnew" placeholder="input new video name"></input>
     <br>
     <button onclick="switchVideo('video')">Avengers 4 Trailer</button>
     <button onclick="switchVideo('MU_1')">Michael Wazowski</button>
@@ -38,29 +39,36 @@
     <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
     <script>
         OptionList = [];
-        tmp = '';
-        function getFileName(input){
-            url = input.value;
-            console.log(url)
-            var ext = url.substring(url.lastIndexOf('.')+1).toLowerCase();
-            if (input.files && (ext == "mp4" || ext == "" || ext == "")){
-                tmp = url;
-            }
-            else {
-                tmp = '';
-            }
-        }
-        const submit = document.getElementById("submit");
-        submit.addEventListener('click', event=>{
-            if (tmp !== '') {
-                OptionList.push(tmp);
-                videoNode = CreateItem(tmp.substring(url.lastIndexOf('/'),url.lastIndexOf('.')), OptionList.length);
+        // tmp = '';
+        // function getFileName(input){
+        //     url = input.value;
+        //     console.log(url)
+        //     var ext = url.substring(url.lastIndexOf('.')+1).toLowerCase();
+        //     tmp = url;
+        //     console.log(tmp);
+        // }
+        const input = document.getElementById("inputnew");
+        input.addEventListener('keyup', event=>{
+            if (event.keyCode === 13 && event.target.value !== '')  {
+                var url = event.target.value;
+                OptionList.push(url);
+                // videoNode = CreateItem(tmp.substring(url.lastIndexOf('/'),url.lastIndexOf('.')), OptionList.length);
+                videoNode = CreateItem(url, OptionList.length);                
+                console.log(videoNode);
                 var select = document.getElementsByName("ChooseVideo")[0]
                 select.appendChild(videoNode);
-                tmp = '';
+                event.target.value = '';
             }
 
         })
+        function CreateItem(innertext, num) {
+            const Option = document.createElement("option");
+            Option.setAttribute("value", innertext);
+            Option.innerHTML = innertext;
+            // Option.setAttribute("onclick", "switchVideo("+innertext+")")
+            return Option
+        }
+
         var url = "/video/video/video.mpd";
         var player = dashjs.MediaPlayer().create();
 
@@ -81,12 +89,7 @@
             player.initialize(document.querySelector("#videoPlayer"), url, true);
         })();
 
-        function CreateItem(innertext, num) {
-            const Option = document.createElement("option");
-            Option.setAttribute("value", innertext);
-            Option.innerHTML = innertext;
-            Option.setAttribute("onclick", "switchVideo("+innertext+")")
-        }
+        
     </script>
 
 </body>
