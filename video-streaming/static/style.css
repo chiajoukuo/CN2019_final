@@ -1,0 +1,33 @@
+img{
+    width:60%;
+    margin-left:30px;
+    
+}
+h1{
+    font-size: 45px;
+    margin-bottom: 5px;
+}
+p{
+    margin-top:5px;
+}
+body{
+    font-family: 'Varela Round', sans-serif;
+    vertical-align: middle;
+    text-align: center;
+    /*background: -webkit-linear-gradient(rgb(233, 216, 243), rgb(167, 202, 236));
+    
+    background-image:url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYjeCgDPDFb0PRazerBmFpgCKeA4kQUaMarKj3JAU-0jDYr1i_");
+    */
+    
+    background-image:url("http://i0.wp.com/www.san-x.co.jp/sumikko/img/wall/pc01_1080_1920.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.icon{
+    width:50px;
+    margin-right:10px;
+    margin-bottom:10px;
+}
+.icon:hover{
+    transform: translateY(-3px) translateX(-3px);
+}
