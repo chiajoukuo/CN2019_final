@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { MediaPlayer } from 'dashjs';
 
+const player = MediaPlayer().create();
 
 class App extends Component {
     state = {
