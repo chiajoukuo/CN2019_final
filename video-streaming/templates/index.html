@@ -6,7 +6,7 @@
   </head>
   <body>
     <h1>Video Streaming</h1>
-    
+    <p>Click on the button below to change icon.</p>
     <div>
       <input type="image" src="../static/icon/non.png" alt="send" name="Test" id="ebi"
         onclick="video();" class="icon"/>
@@ -16,8 +16,10 @@ onclick="ebi_video();" class="icon"/>
 onclick="pack_video();" class="icon"/>
       <input type="image" src="../static/icon/shiba.png"  alt="send" name="Test" id="pack"
 onclick="shiba_video();" class="icon"/>
+      <input type="image" src="../static/icon/pose.png"  alt="send" name="Test" id="pack"
+onclick="pose_video();" class="icon"/>
       <a href="http://192.168.43.220:8080"><img src ="https://cdn4.iconfinder.com/data/icons/movies-2-solid/60/067_-_Ironman-512.png" class ="icon"/></a>
-    <p>Click on the button below to change icon.</p>
+
     </div>
     <script>
       video = () => {
@@ -35,6 +37,10 @@ onclick="shiba_video();" class="icon"/>
       shiba_video = () => {
         var im = document.getElementById("bg")
         im.setAttribute("src", "{{ url_for('shiba') }}")
+      }
+      pose_video = () => {
+        var im = document.getElementById("bg")
+        im.setAttribute("src", "{{ url_for('pose') }}")
       }
     </script>
     <img id="bg" src="{{ url_for('video_feed') }}" width="50%" margin="30px">

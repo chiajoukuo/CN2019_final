@@ -45,6 +45,10 @@ def pack():
 def shiba():
     return Response(gen(VideoCamera(),'shiba'),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
+@app.route('/pose')
+def pose():
+    return Response(gen(VideoCamera(),'pose'),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
 

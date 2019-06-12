@@ -33,6 +33,10 @@ class VideoCamera(object):
         e = TfPoseEstimator(get_graph_path('mobilenet_thin'), target_size=(432, 368))
         humans = e.inference(image, resize_to_default=(w > 0 and h > 0), upsample_size=4.0)
         image_h, image_w = image.shape[:2]
+        if pic == 'pose':
+            image = TfPoseEstimator.draw_humans(image, humans, imgcopy=False)
+            ret, jpeg = cv2.imencode('.jpg', image)
+            return jpeg.tobytes()
         print('pic',pic)
         ebi=cv2.imread('./static/icon/'+pic+'.png')
         # ebi=cv2.imread('./static/icon/ebi.png')

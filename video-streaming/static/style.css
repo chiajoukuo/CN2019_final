@@ -31,3 +31,12 @@ body{
 .icon:hover{
     transform: translateY(-3px) translateX(-3px);
 }
+.avenger{
+    width:50px;
+    margin-top:15px;
+    margin-right:30px;
+    float:right;
+}
+.avenger:hover{
+    transform: translateY(-3px) translateX(-3px);
+}
