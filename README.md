@@ -36,6 +36,11 @@ header("Location: http://YOUR_IP_ADDRESS");
 ### Default Videos
 * Avengers 4 Trailer & Michael Wazowski are called video2.mp4 & MU_1.mp4 in our server
 * Feel free to delete the default select options in our index.html
+```javascript
+// Line 106 in index.html
+// You can change the default url
+var url = "/video/video2/video2.mpd";
+```
 
 ### Now you can
 * **Upload your own video**
