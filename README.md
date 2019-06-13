@@ -2,7 +2,7 @@
 Computer Network final : video streaming
 
 ## Video Player
-### How to start
+### How to start?
 ```python3
 # Install ffmpeg & mp4box
 brew install ffmpeg gpac
@@ -42,7 +42,7 @@ header("Location: http://YOUR_IP_ADDRESS");
 var url = "/video/video2/video2.mpd";
 ```
 
-### Now you can
+### Now you can...
 * **Upload your own video**
   - You might need to wait a while so that server can have time to convert the video
 * **Type the Video Name in Input area, and press Enter**
