@@ -8,7 +8,7 @@ Computer Network final : video streaming
 brew install ffmpeg gpac
 
 # Clone our repo
-git clone 
+git clone https://github.com/chiajoukuo/CN2019_final.git
 cd video-player
 
 # Create video/ & upload/
