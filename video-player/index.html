@@ -5,35 +5,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">
+    <title>Video Player</title>
+    <style>
+        body {
+            background-image: url("https://i.redd.it/px4sspxexxl21.jpg");
+            background-size: 100%;
+            color: white;
+            margin-left: 20px;
+            font-family: 'Varela Round', sans-serif;
+        }
+
+        #videoDiv {
+            text-align: center;
+        }
+        .icon {
+            width: 50px;
+            float: right;
+            margin-right: 30px;
+        }
+        .icon:hover {
+            transform: translateY(-3px) translateX(-3px);
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Hello</h1>
+    <div>
+        <h1>Video Player <a href="http://192.168.43.202:5000/"><img src="non.png" class="icon"/></a></h1>
+        
+    </div>
 
     <h3>Click the video name you want to watch...</h3>
 
-
     <form method="POST" enctype="multipart/form-data" action="upload.php">
         <input type="file" name="my_file" accept="video/*" onchange="getFileName(this)">
-        <input type="submit" value="Upload" id="submit">
+        <input type="submit" value="Upload" id="submit" onclick="uploading()">
+        <span id="uploading"></span>
     </form>
     <form>
         <select name="ChooseVideo" onchange="switchVideo(this.options[this.options.selectedIndex].value)">
-        　<option value="video">Avengers 4 Trailer</option>
-        　<option value="MU_1">Michael Wazowski</option>
+            　<option value="video2">Avengers 4 Trailer</option>
+            　<option value="MU_1">Michael Wazowski</option>
         </select>
     </form>
     <input id="inputnew" placeholder="input new video name"></input>
-    <br>
-    <button onclick="switchVideo('video')">Avengers 4 Trailer</button>
-    <button onclick="switchVideo('MU_1')">Michael Wazowski</button>
+    <br />
+    <!-- <button onclick="switchVideo('video')">Avengers 4 Trailer</button>
+    <button onclick="switchVideo('MU_1')">Michael Wazowski</button> -->
+
+    <div id="videoDiv">
+        <button onclick="switchSpeed(0.5)">0.5x</button>
+        <button onclick="switchSpeed(1)">1x</button>
+        <button onclick="switchSpeed(2)">2x</button>
+        <br/>
+        <video id="videoPlayer" controls width="640" ref=></video>
+    </div>
 
 
-    <video id="videoPlayer" controls width="600" ref=></video>
-    <button onclick="switchSpeed(0.5)">0.5x</button>
-    <button onclick="switchSpeed(1)">1x</button>
-    <button onclick="switchSpeed(2)">2x</button>
 
 
     <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
@@ -48,12 +77,12 @@
         //     console.log(tmp);
         // }
         const input = document.getElementById("inputnew");
-        input.addEventListener('keyup', event=>{
-            if (event.keyCode === 13 && event.target.value !== '')  {
+        input.addEventListener('keyup', event => {
+            if (event.keyCode === 13 && event.target.value !== '') {
                 var url = event.target.value;
                 OptionList.push(url);
                 // videoNode = CreateItem(tmp.substring(url.lastIndexOf('/'),url.lastIndexOf('.')), OptionList.length);
-                videoNode = CreateItem(url, OptionList.length);                
+                videoNode = CreateItem(url, OptionList.length);
                 console.log(videoNode);
                 var select = document.getElementsByName("ChooseVideo")[0]
                 select.appendChild(videoNode);
@@ -69,7 +98,12 @@
             return Option
         }
 
-        var url = "/video/video/video.mpd";
+        function uploading() {
+            const Upload = document.getElementById("uploading");
+            Upload.innerHTML = "檔案上傳中...";
+        }
+
+        var url = "/video/video2/video2.mpd";
         var player = dashjs.MediaPlayer().create();
 
         var switchSpeed = (i) => {
@@ -77,7 +111,7 @@
         }
         var switchVideo = (name) => {
             console.log(name)
-            url = "/video/"+name+"/" + name + ".mpd";
+            url = "/video/" + name + "/" + name + ".mpd";
             console.log(url)
             // var player = dashjs.MediaPlayer().create();
             player.reset();
@@ -89,7 +123,7 @@
             player.initialize(document.querySelector("#videoPlayer"), url, true);
         })();
 
-        
+
     </script>
 
 </body>
