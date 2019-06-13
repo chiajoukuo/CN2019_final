@@ -43,7 +43,7 @@ if ($_FILES['my_file']['error'] === UPLOAD_ERR_OK){
 
     echo '上傳成功<br/>';
     //重定向瀏覽器 
-    header("Location: http://192.168.43.220:8080"); 
+    header("Location: http://localhost:8080"); 
     //確保重定向後，後續代碼不會被執行 
     exit;
   }
@@ -53,5 +53,5 @@ if ($_FILES['my_file']['error'] === UPLOAD_ERR_OK){
 
 ?>
 <br/>
-<a href="http://192.168.43.220:8080">若無跳轉頁面，按此重回原頁面</a>
+<a href="http://localhost:8080">若無跳轉頁面，按此重回原頁面</a>
 </body>
